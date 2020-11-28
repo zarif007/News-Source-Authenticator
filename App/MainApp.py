@@ -47,10 +47,6 @@ MDTextField:
     width:500
 """
 
-
-
-
-
 nav_helper="""
 Screen:
     NavigationLayout:
@@ -119,16 +115,12 @@ Screen:
                         OneLineListItem:
                             text:'https://thebangladeshtoday.com/'
                             font_style : 'Button'
-
-
-                        
                         
 """
 
 
 class NSA(MDApp):
     def build(self):
-        
         screen=Screen()
         hlp=Builder.load_string(nav_helper)
         #label=MDLabel(text='News Source Authenticator' ,  halign='center', theme_text_color='Error' , font_style='H6')
@@ -151,55 +143,48 @@ class NSA(MDApp):
         screen.add_widget(hlp)
         return screen
 
-    c=0
+    countColor = 0
     def change_colour(self,obj):
-        self.c=self.c+1
-        if(self.c%2!=0):
-            self.theme_cls.theme_style="Dark"
+        self.countColor = self.countColor+1
+        if(self.countColor%2 != 0):
+            self.theme_cls.theme_style = "Dark"
         else:
-            self.theme_cls.theme_style="Light"
-            
-    fakeList=[]
-    fc=0
-
-    def check_source(self,obj):
+            self.theme_cls.theme_style = "Light"
+           
         
-
-    
-    
-        s=str(self.link.text)
-        z=len(s)
-        f=""
-        hc=0
-
-        for i in range (0,z):
-            if(hc<3):
-                f=f+s[i]
-                if(s[i]=='/'):
-                    hc+=1
+    fakeList = []
+    fakeCounter = 0
+    def check_source(self, obj):
+        Link = str(self.link.text)
+        Link_size = len(s)
+        final_source = ""
+        hCounter = 0
+        for i in range (0, Link_size):
+            if(hCounter < 3):
+                final_source = final_source + Link[i]
+                if(Link[i]=='/'):
+                    hCounter+=1
             else:
                 break
-
 
         print(f)
         count=0
         for i in range (len(lis)):
-            h=lis[i]
-            if(f==h):
+            hlink = lis[i]
+            if(final_source == hlink):
                 count+=1
         
-
         ln=len(f)-1
 
-        close_button=MDFlatButton(text='close' , on_release=self.colse_dialog)
-        if(count!=0):
-            self.dialog=MDDialog(title='REAL NEWS' , text="The news source "+f[8:ln]+"  is legit and there is high chance of being this news true.",size_hint=(0.7,2),buttons=[close_button])
+        close_button=MDFlatButton(text='close', on_release=self.colse_dialog)
+        if(count != 0):
+            self.dialog = MDDialog(title='REAL NEWS' , text="The news source " + final_source[8:ln] + "  is legit and there is high chance of being this news true.", size_hint=(0.7,2),buttons=[close_button])
             self.dialog.open()
         else:
-            self.fakeList.append(f[8:ln])
-            print(self.fakeList[self.fc])
-            self.fc=+1
-            self.dialog=MDDialog(title='FAKE NEWS' ,  text="The news source "+f[8:ln]+"  is not legit and there is high chance of being this news fake.",size_hint=(0.7,2),buttons=[close_button])
+            self.fakeList.append(final_source[8:ln])
+            print(self.fakeList[self.fakeCounter])
+            self.fakeCounter = +1
+            self.dialog = MDDialog(title='FAKE NEWS' ,  text="The news source " + final_source[8:ln] + "  is not legit and there is high chance of being this news fake.", size_hint=(0.7,2),buttons=[close_button])
             self.dialog.open()
 
     def colse_dialog(self,obj):
