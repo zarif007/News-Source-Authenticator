@@ -156,7 +156,7 @@ class NSA(MDApp):
     fakeCounter = 0
     def check_source(self, obj):
         Link = str(self.link.text)
-        Link_size = len(s)
+        Link_size = len(Link)
         final_source = ""
         hCounter = 0
         for i in range (0, Link_size):
