@@ -167,7 +167,7 @@ class NSA(MDApp):
             else:
                 break
 
-        print(f)
+        print(final_source)
         count=0
         for i in range (len(lis)):
             hlink = lis[i]
@@ -178,20 +178,22 @@ class NSA(MDApp):
 
         close_button=MDFlatButton(text='close', on_release=self.colse_dialog)
         if(count != 0):
-            self.dialog = MDDialog(title='REAL NEWS' , text="The news source " + final_source[8:ln] + "  is legit and there is high chance of being this news true.", size_hint=(0.7,2),buttons=[close_button])
+            self.dialog = MDDialog(title='REAL NEWS' , text="The news source " + final_source[8:ln] + "  is legit and there is high chance of being 
+                                                       this news true.", size_hint=(0.7,2),buttons=[close_button])
             self.dialog.open()
         else:
             self.fakeList.append(final_source[8:ln])
             print(self.fakeList[self.fakeCounter])
             self.fakeCounter = +1
-            self.dialog = MDDialog(title='FAKE NEWS' ,  text="The news source " + final_source[8:ln] + "  is not legit and there is high chance of being this news fake.", size_hint=(0.7,2),buttons=[close_button])
+            self.dialog = MDDialog(title='FAKE NEWS' ,  text="The news source " + final_source[8:ln] + "  is not legit and there is high chance of being 
+                                                        this news fake.", size_hint=(0.7,2),buttons=[close_button])
             self.dialog.open()
 
     def colse_dialog(self,obj):
         self.dialog.dismiss()
 
 
-    def check_text(self,obj):
+    def check_text(self, obj):
         s=self.link2.text 
         options = webdriver.ChromeOptions() 
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
@@ -203,7 +205,7 @@ class NSA(MDApp):
         search.send_keys(Keys.RETURN)
         time.sleep(10)
 
-    def check_image(self,obj):
+    def check_image(self, obj):
         s=self.link1.text 
         options = webdriver.ChromeOptions() 
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
